@@ -1,0 +1,13 @@
+*
+
+!.gitignore
+!.readme.md
+
+!Assets/
+!Assets/**/*
+
+!Packages/
+!Packages/**/*
+
+!ProjectSettings/
+!ProjectSettings/**/*
