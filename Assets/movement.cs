@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class movement : MonoBehaviour
 {
+    public int hp = 50;
+    public GameObject laser;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,14 +32,21 @@ public class movement : MonoBehaviour
         if (transform.position.x > -9.5 && Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector2.left * speed * Time.deltaTime);
+        }
+           if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(laser,transform.position, Quaternion.identity);
             
-            {
-                
 
-            }
         }
 
 
 
-    }   }
+
+
+        }
+
+
+
+    }   
         
