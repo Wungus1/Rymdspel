@@ -4,6 +4,12 @@ using UnityEngine.InputSystem;
 
 public class movement : MonoBehaviour
 {
+    [Header("Position Bounds")]
+    [SerializeField] float minHor = -8.0f;
+    [SerializeField] float maxHor = 8.0f;
+    [SerializeField] float minVer = -4.5f;
+    [SerializeField] float maxVer = 4.5f;
+    [Space]
     public int hp = 50;
     public GameObject laser;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,10 +33,12 @@ public class movement : MonoBehaviour
     {
         Vector2 dir = InputManager.instance().actions.player.move.ReadValue<Vector2>();
 
-        if (transform.position.x > -9.5|| transform.position.y > -4.5 || transform.position.y < 4.5 || transform.position.x < 9.5)
-        {
-            transform.Translate(dir * speed * Time.deltaTime);
-        }
+        Vector2 newPos = new Vector2 (
+            Mathf.Clamp(transform.position.x + dir.x * speed * Time.deltaTime, minHor, maxHor),
+            Mathf.Clamp(transform.position.y + dir.y * speed * Time.deltaTime, minVer, maxVer)
+        );
+
+        transform.position = newPos;
     }
 
     void shoot(InputAction.CallbackContext context)

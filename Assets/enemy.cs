@@ -3,8 +3,8 @@ using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class enemy : MonoBehaviour
-
 {
+    [SerializeField] float speed = 5.0f;
     movement Ship;
     private void Start()
     {
@@ -22,12 +22,11 @@ public class enemy : MonoBehaviour
     }
     private void Update()
     {
-        float speed = 5.0f;
-        float yPos = 0.0f;
-        yPos = transform.position.y;
+        transform.position = new Vector2 (
+            transform.position.x,
+            transform.position.y - speed * Time.deltaTime
+        );
 
-        yPos -= speed * Time.deltaTime;
-        transform.position = new Vector2(transform.position.x, yPos);
         if (transform.position.y < -5.5f)
         {
             Ship.hp = Ship.hp - 10;
